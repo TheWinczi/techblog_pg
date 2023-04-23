@@ -1,0 +1,78 @@
+{% extends 'accounts/base.html' %}
+
+{% load i18n %}
+
+
+{% block content %}
+<div class="p-5 shadow rounded-4 w-50 mx-auto my-auto">
+    <div class="px-2 mb-4 border-bottom border-top fw-bold fs-3 text-center">
+        {% trans 'Login' %}
+    </div>
+
+    <form class="mb-2" id="login-form" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="fa-solid fa-at fa-fw"></i>
+            </span>
+            <div class="form-floating">
+                <input type="email" id="email-input" class="form-control" minlength="5" maxlength="100" placeholder="{% trans 'email' %}" required/>
+                <label for="email-input">{% trans 'email' %}</label>
+            </div>
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="fa-solid fa-lock fa-fw"></i>
+            </span>
+            <div class="form-floating">
+                <input type="password" id="password-input" class="form-control" minlength="5" maxlength="100" placeholder="{% trans 'password' %}" required/>
+                <label for="password-input">{% trans 'password' %}</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">
+            <i class="fa-solid fa-right-to-bracket fa-fw"></i>
+            {% trans 'Login' %}
+        </button>
+    </form>
+
+    <div class="w-100 text-end">
+        <a class="text-info" href="{% url 'register' %}">
+            {% trans 'Register' %}
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block bodyend %}
+<script>
+    const loginForm = document.getElementById('login-form');
+    const emailInput = document.getElementById('email-input');
+    const passwordInput = document.getElementById('password-input');
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const formData = new FormData(loginForm);
+        formData.append('email', emailInput.value);
+        formData.append('password', passwordInput.value);
+
+        let request = new XMLHttpRequest();
+        request.addEventListener('load', function(e){
+            const status = this.status;
+            if(status === 200) {
+                alert('Zalogowano');
+                location.replace('/');
+            } else {
+                alert('Niepoprawne dane logowania');
+            }
+        });
+
+        request.open('POST', loginForm.getAttribute('action'), false);
+        request.send(formData);
+    })
+</script>
+{% endblock %}

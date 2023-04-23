@@ -1,0 +1,46 @@
+[
+  {
+    "model": "accounts.CustomUser",
+    "pk": 1,
+    "fields": {
+      "email": "admin@admin.pl",
+      "password": "pbkdf2_sha256$390000$EZ6PbXxJrHItTvViGqVaCM$YatxTIZUmqhclj7q3prtxy4rMqKnNhsbO0hZxSDjPoE=",
+      "is_staff": true,
+      "is_active": true,
+      "is_superuser": true
+    }
+  },
+  {
+    "model": "accounts.CustomUser",
+    "pk": 2,
+    "fields": {
+      "email": "adrian@gmail.com",
+      "password": "pbkdf2_sha256$390000$EZ6PbXxJrHItTvViGqVaCM$YatxTIZUmqhclj7q3prtxy4rMqKnNhsbO0hZxSDjPoE=",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false
+    }
+  },
+  {
+    "model": "accounts.CustomUser",
+    "pk": 3,
+    "fields": {
+      "email": "miłosz@gmail.com",
+      "password": "pbkdf2_sha256$390000$EZ6PbXxJrHItTvViGqVaCM$YatxTIZUmqhclj7q3prtxy4rMqKnNhsbO0hZxSDjPoE=",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false
+    }
+  },
+  {
+    "model": "accounts.CustomUser",
+    "pk": 4,
+    "fields": {
+      "email": "agnieszka@gmail.com",
+      "password": "pbkdf2_sha256$390000$EZ6PbXxJrHItTvViGqVaCM$YatxTIZUmqhclj7q3prtxy4rMqKnNhsbO0hZxSDjPoE=",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false
+    }
+  }
+]

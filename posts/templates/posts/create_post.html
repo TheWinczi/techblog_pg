@@ -1,0 +1,70 @@
+{% extends 'posts/base.html' %}
+
+{% load i18n comments %}
+
+
+{% block content %}
+{% if perms.posts.add_post %}
+<div class="my-3">
+    <div class="w-100 fw-bold fs-3 border-bottom pb-3 mb-3 text-center">
+        {% trans 'Create new post' %}
+    </div>
+    <div>
+        <form id="create-post-form" class="mb-3" action="{% url 'posts' %}">
+            {% csrf_token %}
+
+            <div class="form-floating mb-3">
+                <input type="text" id="title-input" class="form-control" maxlength="500" minlength="5" placeholder="{% trans 'Title' %}" required />
+                <label for="title-input">{% trans 'Title' %}</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <textarea type="text" id="content-input" class="form-control" maxlength="5000" minlength="200" style="min-height: 75vh" placeholder="{% trans 'Content' %}" required></textarea>
+                <label for="content-input">{% trans 'Content' %}</label>
+            </div>
+
+            <button type="submit" class="btn btn-outline-success w-100">
+                <i class="fa-regular fa-square-plus fa-fw"></i>
+                {% trans 'Create Post' %}
+            </button>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block bodyend %}
+{% if perms.posts.add_post %}
+<script>
+    const createPostForm = document.getElementById('create-post-form');
+    const titleInput = document.getElementById('title-input');
+    const contentInput = document.getElementById('content-input');
+
+    createPostForm.addEventListener('submit', (e) => {
+        e.preventDefault(); e.stopPropagation();
+
+        if(!createPostForm.checkValidity())
+            return;
+
+        const formData = new FormData(createPostForm);
+        formData.append('title', titleInput.value);
+        formData.append('content', contentInput.value);
+
+        const request = new XMLHttpRequest();
+        request.addEventListener('load', function(e){
+            const status = this.status;
+            if(status === 201){
+                console.log(this.responseText);
+                console.log(JSON.parse(this.responseText));
+                alert('Post został dodany pomyślnie');
+                location.replace(`/posts/${JSON.parse(this.responseText).id}/`);
+            } else {
+                alert('Niepoprawne dane postu');
+            }
+        });
+        request.open('POST', createPostForm.getAttribute('action'), true);
+        request.send(formData);
+    });
+</script>
+{% endif %}
+{% endblock  %}

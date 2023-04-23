@@ -1,0 +1,39 @@
+{% extends 'posts/base.html' %}
+
+{% load i18n posts %}
+
+
+{% block content %}
+{% if perms.posts.view_post %}
+<div class="my-3">
+    <div class="pb-3 mb-3 border-bottom fw-bold fs-3 text-center">
+        {% trans 'Newest Posts' %}
+    </div>
+    <div>
+        {% for post in posts %}
+        <div class="card text-center mb-4">
+            <div class="card-header text-success fst-italic d-flex justify-content-between w-100">
+                <div>
+                    <i class="fa-solid fa-pen-nib fa-fw fa-flip-horizontal"></i>
+                    {{ post.author.email }}
+                </div>
+                <div>{{ post|datetime_term }}</div>
+            </div>
+            <div class="card-body">
+                <div class="text-start mb-2">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post|short_content }}</p>
+                </div>
+                <div class="text-end mt-4">
+                    <a href="{% url 'post_details' post.id %}" class="btn btn-outline-success">
+                        <i class="fa-brands fa-readme fa-fw"></i>
+                        {% trans 'Read more' %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

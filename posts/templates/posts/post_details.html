@@ -1,0 +1,90 @@
+{% extends 'posts/base.html' %}
+
+{% load i18n comments %}
+
+
+{% block content %}
+{% if perms.posts.view_post %}
+<div class="my-3">
+    <div class="mb-3 pb-3 border-bottom">
+        <div class="text-muted d-flex justify-content-between w-100">
+            <div>{{ post.author.email }}</div>
+            <div>{{ post.created_at }}</div>
+        </div>
+        <div class="fw-bold text-start fs-2 border-bottom pb-3 mb-3">
+            {{ post.title }}
+        </div>
+        <div style="text-align: justify; text-justify: inter-word;">
+            {{ post.content }}
+        </div>
+    </div>
+    <div>
+        <div class="fw-bold fs-4 border-bottom pb-4 mb-4 text-center text-info">
+            <i class="fa-solid fa-comment fa-fw fa-beat"></i>
+            {% trans 'Comments section' %}
+        </div>
+
+        {% if perms.posts.add_comment %}
+        <form id="add-comment-form" class="mb-3" action="{% url 'post_details' post.id %}">
+            {% csrf_token %}
+
+            <div class="form-floating mb-2">
+                <textarea id="comment-input" class="form-control" placeholder="{% trans 'Add comment' %}" minlength="5" maxlength="500" style="min-height: 100px;" required></textarea>
+                <label for="comment-input">{% trans 'Add comment' %}</label>
+            </div>
+            <button type="submit" class="btn btn-outline-info w-100">
+                <i class="fa-regular fa-square-plus fa-fw"></i>
+                {% trans 'Add comment' %}
+            </button>
+        </form>
+        {% endif %}
+
+        {% if perms.posts.view_comment %}
+        {% for comment in comments %}
+            <div class="w-100 d-flex justify-content-start border rounded mb-3 p-2">
+                <div class="my-auto me-2 text-info">
+                    <i class="fa-regular fa-user fa-fw fa-2xl"></i>
+                </div>
+                <div class="border-start border-info ps-2 w-100">
+                    <div class="text-muted border-bottom mb-2 pb-2 fst-italic d-flex justify-content-between">
+                        <div>{{ comment.author.email }}</div>
+                        <div>{{ comment|datetime_term }}</div>
+                    </div>
+                    <div>
+                        {{ comment.content }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block bodyend %}
+<script>
+    const addCommentForm = document.getElementById('add-comment-form');
+    const commentContent = document.getElementById('comment-input');
+
+    addCommentForm.addEventListener('submit', (e) => {
+        e.preventDefault(); e.stopPropagation();
+
+        const formData = new FormData(addCommentForm);
+        formData.append('content', commentContent.value);
+
+        const request = new XMLHttpRequest();
+        request.addEventListener('load', function(e){
+            const status = this.status;
+            if(status === 201){
+                alert('Komentarz dodany pomyślnie');
+                location.reload();
+            } else {
+                alert('Niepoprawne dane komentarza');
+            }
+        });
+        request.open('POST', addCommentForm.getAttribute('action'), true);
+        request.send(formData);
+    })
+</script>
+{% endblock  %}

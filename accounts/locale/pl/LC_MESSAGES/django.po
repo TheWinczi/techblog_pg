@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-23 11:48+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: .\admin.py:9
+msgid "General"
+msgstr "Ogólne"
+
+#: .\admin.py:10 .\models.py:34
+msgid "Account"
+msgstr "Konto"
+
+#: .\models.py:25
+msgid "Email address"
+msgstr "Adres email"
+
+#: .\models.py:26
+msgid "Is Staff"
+msgstr "Czy pracownik"
+
+#: .\models.py:27
+msgid "Is Active"
+msgstr "Czy aktywny"
+
+#: .\models.py:35
+msgid "Accounts"
+msgstr "Konta"
+
+#: .\templates\accounts\registration\login.html:9
+#: .\templates\accounts\registration\login.html:37
+msgid "Login"
+msgstr "Login"
+
+#: .\templates\accounts\registration\login.html:20
+#: .\templates\accounts\registration\login.html:21
+#: .\templates\accounts\registration\register.html:20
+#: .\templates\accounts\registration\register.html:21
+msgid "email"
+msgstr "adres email"
+
+#: .\templates\accounts\registration\login.html:30
+#: .\templates\accounts\registration\login.html:31
+#: .\templates\accounts\registration\register.html:41
+#: .\templates\accounts\registration\register.html:42
+#: .\templates\accounts\registration\register.html:50
+msgid "password"
+msgstr "hasło"
+
+#: .\templates\accounts\registration\login.html:43
+#: .\templates\accounts\registration\register.html:57
+msgid "Register"
+msgstr "Zarejestruj"
+
+#: .\templates\accounts\registration\logout_done.html:17
+msgid "Login again"
+msgstr "Zaloguj ponownie"
+
+#: .\templates\accounts\registration\register.html:9
+msgid "Register new account"
+msgstr "Zarejestruj nowe konto"
+
+#: .\templates\accounts\registration\register.html:29
+#: .\templates\accounts\registration\register.html:30
+msgid "repeat email"
+msgstr "powtórz email"
+
+#: .\templates\accounts\registration\register.html:51
+msgid "repeat password"
+msgstr "powtórz hasło"

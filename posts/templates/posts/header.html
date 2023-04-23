@@ -1,0 +1,50 @@
+{% load i18n %}
+
+<nav class="navbar navbar-dark navbar-expand-xl bg-dark shadow">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">TechBlog</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between">
+            <div class="navbar-nav">
+
+                {% if perms.posts.add_post %}
+                <div class="nav-item me-2">
+                    <a role="button" class="btn btn-outline-success" href="{% url 'post_create' %}">
+                        <i class="fa-regular fa-square-plus fa-fw"></i>
+                        {% trans 'Create Post' %}
+                    </a>
+                </div>
+                {% endif %}
+
+                {% if request.user.is_staff %}
+                <div class="nav-item">
+                    <a role="button" class="btn btn-outline-danger" href="/admin/">
+                        <i class="fa-solid fa-screwdriver-wrench fa-fw"></i>
+                        {% trans 'Admin' %}
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if request.user.is_authenticated %}
+            <div class="dropdown">
+                <a class="nav-link link-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    <i class="fa-solid fa-circle-user fa-xl"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-xl-end">
+                    <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">
+                        <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+                        {% trans 'Logout' %}
+                    </a></li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>

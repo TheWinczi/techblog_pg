@@ -1,0 +1,107 @@
+{% extends 'accounts/base.html' %}
+
+{% load i18n %}
+
+
+{% block content %}
+<div class="p-5 shadow rounded-4 w-50 mx-auto my-auto">
+    <div class="px-2 mb-4 border-bottom border-top fw-bold fs-3 text-center">
+        {% trans 'Register new account' %}
+    </div>
+
+    <form class="mb-2" id="register-form" action="{% url 'register' %}">
+        {% csrf_token %}
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="fa-solid fa-at fa-fw"></i>
+            </span>
+            <div class="form-floating">
+                <input type="email" id="email-input" class="form-control" minlength="5" maxlength="100" placeholder="{% trans 'email' %}" required/>
+                <label for="email-input">{% trans 'email' %}</label>
+            </div>
+        </div>
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="fa-solid fa-at fa-fw"></i>
+            </span>
+            <div class="form-floating">
+                <input type="email" id="repeat-email-input" class="form-control" minlength="5" maxlength="100" placeholder="{% trans 'repeat email' %}" required/>
+                <label for="repeat-email-input">{% trans 'repeat email' %}</label>
+            </div>
+        </div>
+
+        <div class="border-bottom px-2 my-2"></div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="fa-solid fa-lock fa-fw"></i>
+            </span>
+            <div class="form-floating">
+                <input type="password" id="password-input" class="form-control" minlength="5" maxlength="100" placeholder="{% trans 'password' %}" required/>
+                <label for="password-input">{% trans 'password' %}</label>
+            </div>
+        </div>
+        <div class="input-group mb-2">
+            <span class="input-group-text">
+                <i class="fa-solid fa-lock fa-fw"></i>
+            </span>
+            <div class="form-floating">
+                <input type="password" id="repeat-password-input" class="form-control" minlength="5" maxlength="100" placeholder="{% trans 'password' %}" required/>
+                <label for="repeat-password-input">{% trans 'repeat password' %}</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">
+            <i class="fa-regular fa-square-plus fa-fw"></i>
+            {% trans 'Register' %}
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block bodyend %}
+<script>
+    const registerForm = document.getElementById('register-form');
+    const emailInput = document.getElementById('email-input');
+    const emailRepeatInput = document.getElementById('repeat-email-input');
+    const passwordInput = document.getElementById('password-input');
+    const passwordRepeatInput = document.getElementById('repeat-password-input');
+
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let valid = true;
+
+        if(emailInput.value !== emailRepeatInput.value) {
+            alert('Podane adresy email muszą być identyczne');
+            valid = false;
+        }
+        if(passwordInput.value !== passwordRepeatInput.value) {
+            alert('Podane hasła muszą być identyczne');
+            valid = false;
+        }
+
+        if(!valid)
+            return;
+
+        const formData = new FormData(registerForm);
+        formData.append('email', emailInput.value);
+        formData.append('password', passwordInput.value);
+
+        let request = new XMLHttpRequest();
+        request.addEventListener('load', function(e){
+            const status = this.status;
+            if(status === 201) {
+                alert('Konto zostało utworzone pomyślnie. Możesz się zalogować');
+                location.replace('/login/');
+            } else {
+                alert('Podany email jest już zajęty');
+            }
+        });
+
+        request.open('POST', registerForm.getAttribute('action'), false);
+        request.send(formData);
+    });
+</script>
+{% endblock %}

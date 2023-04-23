@@ -1,0 +1,21 @@
+{% extends 'accounts/base.html' %}
+
+{% load i18n %}
+
+
+{% block content %}
+<div class="p-5 shadow rounded-4 w-50 mx-auto my-auto">
+    <div class="mb-2 pb-2 text-center border-bottom">
+        Wylogowano cię pomyślnie z twojego konta,
+        dziękujemy za wizytę na naszym blogu.
+    </div>
+    <div class="fw-bold text-center border-bottom fs-3 mb-2 pb-2">
+        Do zobaczenia niebawem :D
+    </div>
+    <div>
+        <a role="button" class="btn btn-outline-success w-100" href="{% url 'login' %}">
+            {% trans 'Login again' %}
+        </a>
+    </div>
+</div>
+{% endblock %}
