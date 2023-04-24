@@ -26,8 +26,9 @@ def posts(request):
 
         data = request.POST.dict()
         title, content = data.get('title', ''), data.get('content', '')
+        image = request.FILES.get('image')
         try:
-            post = Post.objects.create(title=title, content=content, author_id=request.user.id)
+            post = Post.objects.create(title=title, content=content, author_id=request.user.id, image=image)
             return HttpResponse(json.dumps({'id': post.id}), status=status.HTTP_201_CREATED)
         except:
             return HttpResponse(status=status.HTTP_400_BAD_REQUEST)

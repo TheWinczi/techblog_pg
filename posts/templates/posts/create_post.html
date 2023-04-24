@@ -13,13 +13,17 @@
         <form id="create-post-form" class="mb-3" action="{% url 'posts' %}">
             {% csrf_token %}
 
+            <div class="mb-3">
+                <input type="file" id="image-input" class="form-control" accept="image/*" required/>
+            </div>
+
             <div class="form-floating mb-3">
                 <input type="text" id="title-input" class="form-control" maxlength="500" minlength="5" placeholder="{% trans 'Title' %}" required />
                 <label for="title-input">{% trans 'Title' %}</label>
             </div>
 
             <div class="form-floating mb-3">
-                <textarea type="text" id="content-input" class="form-control" maxlength="5000" minlength="200" style="min-height: 75vh" placeholder="{% trans 'Content' %}" required></textarea>
+                <textarea type="text" id="content-input" class="form-control" maxlength="5000" minlength="1" style="min-height: 75vh" placeholder="{% trans 'Content' %}" required></textarea>
                 <label for="content-input">{% trans 'Content' %}</label>
             </div>
 
@@ -37,6 +41,7 @@
 {% if perms.posts.add_post %}
 <script>
     const createPostForm = document.getElementById('create-post-form');
+    const imageInput = document.getElementById('image-input');
     const titleInput = document.getElementById('title-input');
     const contentInput = document.getElementById('content-input');
 
@@ -46,9 +51,15 @@
         if(!createPostForm.checkValidity())
             return;
 
+        if(imageInput.files[0].size > 1*1024*1024) {
+            alert('Za duże zdjęcie! Maksymalny rozmiar wynosi 1MB');
+            return;
+        }
+
         const formData = new FormData(createPostForm);
         formData.append('title', titleInput.value);
         formData.append('content', contentInput.value);
+        formData.append('image', imageInput.files[0]);
 
         const request = new XMLHttpRequest();
         request.addEventListener('load', function(e){

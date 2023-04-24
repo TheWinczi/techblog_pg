@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-23 11:49+0200\n"
+"POT-Creation-Date: 2023-04-24 15:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,72 +20,98 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: .\admin.py:18 .\admin.py:34
+#: .\admin.py:17 .\admin.py:37
 msgid "General"
 msgstr "Ogólne"
 
-#: .\admin.py:19 .\admin.py:35
+#: .\admin.py:18 .\admin.py:38
 msgid "Dates"
 msgstr "Daty"
 
-#: .\models.py:9 .\models.py:30
-msgid "Content"
-msgstr "Zawartość"
+#: .\admin.py:27
+msgid "Image Preview"
+msgstr "Podgląd zdjęcia"
 
-#: .\models.py:10
-msgid "Title"
-msgstr "Tytuł"
+#: .\admin.py:47
+msgid "Post Title"
+msgstr "Tytuł artykułu"
 
-#: .\models.py:11 .\models.py:32 .\templates\posts\home.html:15
-msgid "Author"
-msgstr "Autor"
-
-#: .\models.py:13 .\models.py:34
-msgid "Created At"
-msgstr "Utworzony w"
-
-#: .\models.py:14
-msgid "Updated At"
-msgstr "Zaktualizowany w"
-
-#: .\models.py:17 .\models.py:31
-msgid "Post"
-msgstr "Post"
-
-#: .\models.py:18
+#: .\apps.py:8 .\models.py:27
 msgid "Posts"
 msgstr "Posty"
 
-#: .\models.py:37
+#: .\models.py:17 .\models.py:39 .\templates\posts\create_post.html:26
+#: .\templates\posts\create_post.html:27
+msgid "Content"
+msgstr "Zawartość"
+
+#: .\models.py:18 .\templates\posts\create_post.html:21
+#: .\templates\posts\create_post.html:22
+msgid "Title"
+msgstr "Tytuł"
+
+#: .\models.py:19 .\models.py:41
+msgid "Author"
+msgstr "Autor"
+
+#: .\models.py:20
+msgid "Image"
+msgstr "Zdjęcie"
+
+#: .\models.py:22 .\models.py:43
+msgid "Created At"
+msgstr "Utworzony w"
+
+#: .\models.py:23
+msgid "Updated At"
+msgstr "Zaktualizowany w"
+
+#: .\models.py:26 .\models.py:40
+msgid "Post"
+msgstr "Post"
+
+#: .\models.py:46
 msgid "Comment"
 msgstr "Komentarz"
 
-#: .\models.py:38
+#: .\models.py:47
 msgid "Comments"
 msgstr "Komentarze"
+
+#: .\templates\posts\create_post.html:10
+msgid "Create new post"
+msgstr "Utwórz nowy post"
+
+#: .\templates\posts\create_post.html:32 .\templates\posts\header.html:19
+msgid "Create Post"
+msgstr "Utwórz post"
 
 #: .\templates\posts\footer.html:16
 msgid "Social media"
 msgstr "Media społecznościowe"
 
-#: .\templates\posts\header.html:20
+#: .\templates\posts\header.html:28
+msgid "Admin"
+msgstr "Admin"
+
+#: .\templates\posts\header.html:43
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: .\templates\posts\home.html:9 .\templates\posts\posts.html:9
+#: .\templates\posts\home.html:10
 msgid "Newest Posts"
 msgstr "Najnowsze Posty"
 
-#: .\templates\posts\home.html:25
+#: .\templates\posts\home.html:35
 msgid "Read more"
 msgstr "Czytaj więcej"
 
-#: .\templates\posts\post_details.html:23
+#: .\templates\posts\post_details.html:25
 msgid "Comments section"
 msgstr "Sekcja komentarzy"
 
-#: .\templates\posts\post_details.html:30
-#: .\templates\posts\post_details.html:31
-#: .\templates\posts\post_details.html:35
+#: .\templates\posts\post_details.html:33
+#: .\templates\posts\post_details.html:34
+#: .\templates\posts\post_details.html:38
 msgid "Add comment"
 msgstr "Dodaj komentarz"

@@ -14,9 +14,10 @@
         <div class="fw-bold text-start fs-2 border-bottom pb-3 mb-3">
             {{ post.title }}
         </div>
-        <div style="text-align: justify; text-justify: inter-word;">
-            {{ post.content }}
+        <div class="text-center mb-3">
+            <img src="{{ post.image.url }}" class="img-fluid" style="height: 33vh" />
         </div>
+        <div style="text-align: justify; white-space: pre-wrap; text-justify: inter-word;">{{ post.content }}</div>
     </div>
     <div>
         <div class="fw-bold fs-4 border-bottom pb-4 mb-4 text-center text-info">

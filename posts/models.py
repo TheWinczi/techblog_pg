@@ -1,5 +1,13 @@
+import os
+import random
+
 from django.db import models
 from django.utils.translation import gettext as _
+
+
+def post_image_upload(instance, filename):
+    id = ''.join(str(random.randint(0, 9)) for _ in range(10))
+    return os.path.join('posts', id, 'images', 'postImage')
 
 
 class Post(models.Model):
@@ -9,6 +17,7 @@ class Post(models.Model):
     content = models.TextField(verbose_name=_('Content'), max_length=CONTENT_MAX_LENGTH)
     title = models.CharField(verbose_name=_('Title'), blank=False, max_length=TITLE_MAX_LENGTH)
     author = models.ForeignKey('accounts.CustomUser', rel='posts', verbose_name=_('Author'), on_delete=models.CASCADE)
+    image = models.ImageField(verbose_name=_('Image'), upload_to=post_image_upload, blank=False)
 
     created_at = models.DateTimeField(verbose_name=_('Created At'), auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name=_('Updated At'), auto_now=True)
