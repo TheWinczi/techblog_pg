@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.forms import TextInput
 from django.db import models as fields
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.utils.html import mark_safe
 
 from .models import Post, Comment

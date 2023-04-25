@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.core.validators import EmailValidator
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext
 from django.contrib.auth.models import Group
 
 from accounts.managers import CustomUserManager
@@ -11,7 +12,7 @@ from accounts.managers import CustomUserManager
 _('admin')
 _('journalist')
 _('user')
-Group.__str__ = lambda self : _(self.name)
+Group.__str__ = lambda self: gettext(self.name)
 
 
 

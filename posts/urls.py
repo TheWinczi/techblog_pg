@@ -10,4 +10,5 @@ urlpatterns = [
     path('posts', views.posts, name='posts'),
     path('posts/<int:id>/', views.post_details, name='post_details'),
     path('posts/create/', views.post_create, name='post_create'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
+  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
