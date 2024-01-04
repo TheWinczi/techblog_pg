@@ -1,0 +1,14 @@
+services:
+  zesi:
+    image: zesi
+    build: .
+
+  haproxy:
+    image: haproxy:latest
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - zesi
+
