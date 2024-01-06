@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  zesi:
+    image: zesi
+    build: .
+    environment:
+      - DEVELOPMENT=false
+    volumes:
+      - db:/app/db
+
+  haproxy:
+    image: haproxy:latest
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - zesi
+
+volumes:
+  db:
